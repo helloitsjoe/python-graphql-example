@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'links',
 ]
 
+
 MIDDLEWARE = [
+    # Middleware to allow passing a 'token' query param for JWT
+    'hackernews.middleware.jwt_query.JWTQueryMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
