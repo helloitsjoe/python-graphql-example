@@ -1,4 +1,5 @@
-from graphene import ObjectType, List, Int, String, Field, Mutation
+from graphene import ObjectType, List, Int, String, Field
+import graphene
 from graphene_django import DjangoObjectType
 from graphql import GraphQLError
 from django.db.models import Q
@@ -45,7 +46,7 @@ class Query(ObjectType):
     def resolve_votes(self, info, **kwargs):
         return Vote.objects.all()
 
-class CreateLink(Mutation):
+class CreateLink(graphene.Mutation):
     id = Int()
     url = String()
     description = String()
@@ -72,7 +73,7 @@ class CreateLink(Mutation):
             posted_by=link.posted_by,
         )
 
-class CreateVote(Mutation):
+class CreateVote(graphene.Mutation):
     user = Field(UserType)
     link = Field(LinkType)
 
